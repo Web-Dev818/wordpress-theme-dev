@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="phpsp"
+         default="main"
+         basedir="."
+         description="phpsp blog theme">
+
+    <property name="message" value="Hello phpsp!"/>
+    <property name="plugindir" value="../../plugins/"/>
+
+    <target name="main">
+        <echo msg="${message}"/>
+        <exec
+                escape="false"
+                passthru="true"
+                checkreturn="true"
+                command="curl http://downloads.wordpress.org/plugin/wp-no-category-base.zip -o '${plugindir}wp-no-category-base.zip'" />
+        <unzip file="${plugindir}wp-no-category-base.zip" todir="${plugindir}" />
+
+        <exec
+                escape="false"
+                passthru="true"
+                checkreturn="true"
+                command="curl https://downloads.wordpress.org/plugin/disqus-comment-system.zip -o '${plugindir}disqus-comment-system.zip'" />
+        <unzip file="${plugindir}disqus-comment-system.zip" todir="${plugindir}" />
+
+        <exec
+            escape="false"
+            passthru="true"
+            checkreturn="true"
+            command="curl http://downloads.wordpress.org/plugin/crayon-syntax-highlighter.zip -o '${plugindir}crayon-syntax-highlighter.zip'" />
+        <unzip file="${plugindir}crayon-syntax-highlighter.zip" todir="${plugindir}" />
+
+        <exec
+                escape="false"
+                passthru="true"
+                checkreturn="true"
+                command="curl http://downloads.wordpress.org/plugin/event-organiser.latest-stable.zip -o '${plugindir}event-organiser.latest-stable.zip'" />
+        <unzip file="${plugindir}event-organiser.latest-stable.zip" todir="${plugindir}" />
+
+        <exec
+                escape="false"
+                passthru="true"
+                checkreturn="true"
+                command="curl https://downloads.wordpress.org/plugin/easy-wp-smtp.zip -o '${plugindir}easy-wp-smtp.zip'" />
+        <unzip file="${plugindir}easy-wp-smtp.zip" todir="${plugindir}" />
+
+        <exec
+                escape="false"
+                passthru="true"
+                checkreturn="true"
+                command="https://github.com/jpjoao/Meetup-Widgets/archive/2.3.2.zip -o '${plugindir}meetup-widgets.2.3.2.zip'" />
+        <unzip file="${plugindir}meetup-widgets.2.3.1.zip" todir="${plugindir}" />
+
+        <exec
+                escape="false"
+                passthru="true"
+                checkreturn="true"
+                command="https://downloads.wordpress.org/plugin/google-analytics-for-wordpress.5.4.4.zip -o '${plugindir}google-analytics-for-wordpress.5.4.4.zip'" />
+        <unzip file="${plugindir}meetup-widgets.2.3.1.zip" todir="${plugindir}" />
+
+        <fileset dir="${plugindir}" id="deleteFiles">
+            <include name="wp-no-category-base.zip" />
+            <include name="disqus-comment-system.zip" />
+            <include name="crayon-syntax-highlighter.zip" />
+            <include name="event-organiser.latest-stable.zip" />
+            <include name="easy-wp-smtp.zip" />
+            <include name="meetup-widgets.2.3.1.zip" />
+            <include name="google-analytics-for-wordpress.5.4.4.zip" />
+        </fileset>
+
+        <delete>
+            <fileset refid="deleteFiles" />
+        </delete>
+    </target>
+
+</project>
